@@ -1,6 +1,4 @@
 import random
-from statistics import median
-
 
 # ----  Ejercicios ---- 
 
@@ -58,12 +56,11 @@ def opcion2(asignaturas):
     deleteasignatura = input("Introduce el nombre de la asignatura que deseas eliminar: ")
     deleteasignatura = deleteasignatura.upper()
 
-    for i in asignaturas:
-        if asignaturas == deleteasignatura:
-            asignaturas.pop(i)
-            return True
-    
-    return False
+    try:
+        asignaturas.remove(deleteasignatura)
+        return True
+    except:
+        return False
     
 #Fin ejercicio 4
 
@@ -111,9 +108,17 @@ def opcion4(asignaturas):
     for i in range(0, contador):
         print(i+1, "-", asignaturas[i])
     
-    print("*** Fin asignaturas matriculadas ***")
+    print("*** Fin asignaturas matriculadas ***\n")
 
 #Fin ejercicio 7
+
+#Ejercicio 8
+
+def buscarAsignatura(asignaturas):
+    contador = 0
+
+
+#Fin ejercicio 8
 
 # ---- Programa principal ----
 
@@ -127,13 +132,20 @@ while (opc >= 1) and (opc < 5):
     if opc == 1:
         asignaturas = opcion1(asignaturas)
         print("")
+
     elif opc == 2:
         borrarAsignatura = opcion2(asignaturas)
+        if borrarAsignatura == True:
+            print("Borrado exitosamente")
+        else:
+            print("No se ha encontrado la asignatura buscada")
         print("")
+
     elif opc == 3:
         notaMedia = opcion3()
         print("La media de las asignaturas es: ", notaMedia)
         print("")
+
     elif opc == 4:
         opcion4(asignaturas)
 
