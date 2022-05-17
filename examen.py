@@ -1,4 +1,5 @@
 import random
+from statistics import median
 
 
 # ----  Ejercicios ---- 
@@ -10,7 +11,7 @@ def muestraMenu():
     print("1 - Guardar asignatura")
     print("2 - Borrar asignatura")
     print("3 - Ver Nota media")
-    print("4 - ver todas las asignaturas")
+    print("4 - Ver todas las asignaturas")
     print("5 - Salir")
 
     bandera = False
@@ -33,10 +34,17 @@ def muestraMenu():
 #Ejercicio 3
 
 def opcion1(asignaturas):
-    numAsignaturas = int(input("¿Cuántas asignaturas vas a añadir?: "))
+    auxbandera = False
+    while auxbandera == False:
+        try:
+            numAsignaturas = int(input("¿Cuántas asignaturas vas a añadir?: "))
+            auxbandera = True
+        except:
+            print("Valor incorrecto")
     
     for i in range(0, numAsignaturas):
         materia = input("Añade la asignatura: ")
+        materia = materia.upper()
         asignaturas.append(materia)
     
     return asignaturas
@@ -44,8 +52,70 @@ def opcion1(asignaturas):
 
 #Fin ejercicio 3
 
+#Ejercicio4
 
-# ---- Programa principal -----
+def opcion2(asignaturas):
+    deleteasignatura = input("Introduce el nombre de la asignatura que deseas eliminar: ")
+    deleteasignatura = deleteasignatura.upper()
+
+    for i in asignaturas:
+        if asignaturas == deleteasignatura:
+            asignaturas.pop(i)
+            return True
+    
+    return False
+    
+#Fin ejercicio 4
+
+#Ejercicio5
+
+def numAleatorio():
+    numAle = []
+    numNotas = int(input("¿Cuántas notas vas a introducir?: "))
+    num = 0
+
+    for i in range(0, numNotas):
+        num = random.randint(0, 10)
+        numAle.append(num)
+    
+    return numAle
+
+#Fin ejercicio 5
+
+#Ejercicio 6
+
+def opcion3():
+    numAle = numAleatorio()
+    total = 0
+    contador = 0
+
+    for i in numAle:
+        total = total + i
+        contador = contador + 1
+    
+    media = total / contador
+    
+    return media
+
+#Fin ejercicio 6
+
+#Ejercicio 7
+
+def opcion4(asignaturas):
+    print("*** Asignaturas matriculadas ***")
+    contador = 0
+
+    for i in asignaturas:
+        contador = contador + 1
+    
+    for i in range(0, contador):
+        print(i+1, "-", asignaturas[i])
+    
+    print("*** Fin asignaturas matriculadas ***")
+
+#Fin ejercicio 7
+
+# ---- Programa principal ----
 
 asignaturas = []
 
@@ -56,12 +126,16 @@ opc = muestraMenu()
 while (opc >= 1) and (opc < 5):
     if opc == 1:
         asignaturas = opcion1(asignaturas)
+        print("")
     elif opc == 2:
-        print("2 - Borrar asignatura")
+        borrarAsignatura = opcion2(asignaturas)
+        print("")
     elif opc == 3:
-        print("3 - Ver Nota media")
+        notaMedia = opcion3()
+        print("La media de las asignaturas es: ", notaMedia)
+        print("")
     elif opc == 4:
-        print("4 - ver todas las asignaturas")
+        opcion4(asignaturas)
 
     opc = muestraMenu()
 
