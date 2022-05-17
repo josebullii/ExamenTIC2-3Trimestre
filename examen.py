@@ -1,6 +1,4 @@
 import random
-from statistics import median
-
 
 # ----  Ejercicios ---- 
 
@@ -12,7 +10,12 @@ def muestraMenu():
     print("2 - Borrar asignatura")
     print("3 - Ver Nota media")
     print("4 - Ver todas las asignaturas")
+<<<<<<< HEAD
+    print("5 - Buscar asignatura")
+    print("6 - Salir")
+=======
     print("5 - Salir")
+>>>>>>> main
 
     bandera = False
 
@@ -25,7 +28,11 @@ def muestraMenu():
             print("NO es una opción correcta\n")
             bandera = False
 
+<<<<<<< HEAD
+    if opc == 6:
+=======
     if opc == 5:
+>>>>>>> main
         print("Saliendo del programa...")
     return opc
 
@@ -58,12 +65,11 @@ def opcion2(asignaturas):
     deleteasignatura = input("Introduce el nombre de la asignatura que deseas eliminar: ")
     deleteasignatura = deleteasignatura.upper()
 
-    for i in asignaturas:
-        if asignaturas == deleteasignatura:
-            asignaturas.pop(i)
-            return True
-    
-    return False
+    try:
+        asignaturas.remove(deleteasignatura)
+        return True
+    except:
+        return False
     
 #Fin ejercicio 4
 
@@ -79,6 +85,7 @@ def numAleatorio():
         numAle.append(num)
     
     return numAle
+<<<<<<< HEAD
 
 #Fin ejercicio 5
 
@@ -111,9 +118,65 @@ def opcion4(asignaturas):
     for i in range(0, contador):
         print(i+1, "-", asignaturas[i])
     
-    print("*** Fin asignaturas matriculadas ***")
+    print("*** Fin asignaturas matriculadas ***\n")
 
+=======
+
+#Fin ejercicio 5
+
+#Ejercicio 6
+
+def opcion3():
+    numAle = numAleatorio()
+    total = 0
+    contador = 0
+
+    for i in numAle:
+        total = total + i
+        contador = contador + 1
+    
+    media = total / contador
+    
+    return media
+
+#Fin ejercicio 6
+
+#Ejercicio 7
+
+def opcion4(asignaturas):
+    print("*** Asignaturas matriculadas ***")
+    contador = 0
+
+    for i in asignaturas:
+        contador = contador + 1
+    
+    for i in range(0, contador):
+        print(i+1, "-", asignaturas[i])
+    
+    print("*** Fin asignaturas matriculadas ***\n")
+
+>>>>>>> main
 #Fin ejercicio 7
+
+#Ejercicio 8
+
+def buscarAsignatura(asignaturas):
+<<<<<<< HEAD
+    asigBuscadas = []
+    parametro = input("Introduce el parámetro de búsqueda: ")
+    parametro = parametro.upper()
+
+    for i in asignaturas:
+        if parametro == asignaturas[i]:
+            asigBuscadas.append(asignaturas[i])
+
+    return asigBuscadas
+=======
+    contador = 0
+>>>>>>> main
+
+
+#Fin ejercicio 8
 
 # ---- Programa principal ----
 
@@ -123,19 +186,38 @@ asignaturas = []
 
 opc = muestraMenu()
 
+<<<<<<< HEAD
+while (opc >= 1) and (opc < 6):
+=======
 while (opc >= 1) and (opc < 5):
+>>>>>>> main
     if opc == 1:
         asignaturas = opcion1(asignaturas)
         print("")
+
     elif opc == 2:
         borrarAsignatura = opcion2(asignaturas)
+        if borrarAsignatura == True:
+            print("Borrado exitosamente")
+        else:
+            print("No se ha encontrado la asignatura buscada")
         print("")
+
     elif opc == 3:
         notaMedia = opcion3()
         print("La media de las asignaturas es: ", notaMedia)
         print("")
+
     elif opc == 4:
         opcion4(asignaturas)
+<<<<<<< HEAD
+        print("")
+
+    elif opc == 5:
+        print(buscarAsignatura(asignaturas))
+        print("")
+=======
+>>>>>>> main
 
     opc = muestraMenu()
 
